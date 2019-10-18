@@ -37,21 +37,24 @@ public class Main {
         }
 
 
-        Scanner inputInt = new Scanner(System.in);
+        /*Scanner inputInt = new Scanner(System.in);
         Scanner inputStr = new Scanner(System.in);
 
-        System.out.println("Enter your UserID");
-        int UserID = inputInt.nextInt();
+
         System.out.println("Enter your Username");
         String Username = inputStr.nextLine();
         System.out.println("Enter your Password");
         String Password = inputStr.nextLine();
+        System.out.println("Enter your Firstname");
+        String Firstname = inputInt.nextLine();
+        System.out.println("Enter your Lastname");
+        String Lastname = inputInt.nextLine();
 
-        writeDatabase(UserID,Username,Password);
+        newUser(Username,Password,Firstname,Lastname);
 
-        readDatabase();
+        //readDatabase();
 
-        closeDatabase();
+        closeDatabase();*/
     }
 
     public static Connection db = null;
@@ -99,7 +102,7 @@ public class Main {
         }
     }
 
-    public static void readDatabase() {
+    /*public static void readDatabase() {
 
         try {
 
@@ -120,19 +123,20 @@ public class Main {
 
     }
 
-    public static void writeDatabase(int UserID,String Username, String Password) {
+    public static void newUser(String Username, String Password, String Firstname, String Lastname) {
 
         try {
 
-            PreparedStatement ps = db.prepareStatement("INSERT into Users (UserID, Username, Password) VALUE (?,?,?)");
-            ps.setInt(1,UserID);
-            ps.setString(2,Username);
-            ps.setString(3,Password);
+            PreparedStatement ps = db.prepareStatement("INSERT into Users (Username,Password,Firstname,Lastname) VALUES (?,?,?,?)");
+            ps.setString(1,Username);
+            ps.setString(2,Password);
+            ps.setString(3,Firstname);
+            ps.setString(4,Lastname);
 
             ps.executeUpdate();
 
         } catch (Exception exception){
             System.out.println("Database error: " + exception.getMessage());
         }
-    }
+    }*/
 }
