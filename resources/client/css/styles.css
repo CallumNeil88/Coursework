@@ -1,7 +1,8 @@
 body {
     background-color: navy;
-    margin: 0;
+    margin: 0px;
     font-family: 'Arial', serif;
+
 }
 
 h1 {
@@ -14,4 +15,31 @@ h1 {
     margin: 0 auto;
     min-height: 600px;
     padding: 32px;
+    height:100%;
+    border-collapse:collapse;
+    display : table;
+}
+
+br1 {
+    display: block; /* makes it have a width */
+    content: ""; /* clears default height */
+    margin-top: 100px; /* change this to whatever height you want it */
+}
+
+br2 {
+    display: block; /* makes it have a width */
+    content: ""; /* clears default height */
+    margin-top: 20px; /* change this to whatever height you want it */
+}
+
+#littleLogo {
+    float: right;
+    background-color: red;
+}
+
+#footer {
+    display : table-row;
+    vertical-align : bottom;
+    height : 20px;
+
 }
