@@ -15,3 +15,35 @@ h1 {
     min-height: 600px;
     padding: 32px;
 }
+
+br1 {
+    display: block;
+    margin-bottom: 2px;
+    line-height: 100px;
+}
+
+br2 {
+    display: block;
+    margin-bottom: 2px;
+    line-height: 2px;
+}
+
+.box {
+    position:relative;
+}
+
+.footer-submit {
+    position:absolute;
+    bottom:0;
+    right:70px;
+}
+
+.footer-cancel {
+    position:absolute;
+    bottom:0;
+    right:0;
+}
+
+
+.button-submit {background-color: green;}
+.button-cancel {background-color: red;}
