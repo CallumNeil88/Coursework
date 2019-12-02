@@ -15,3 +15,50 @@ h1 {
     min-height: 600px;
     padding: 32px;
 }
+
+br1 {
+    display: block; /* makes it have a width */
+    content: ""; /* clears default height */
+    margin-top: 100px; /* change this to whatever height you want it */
+}
+
+
+br2 {
+    display: block; /* makes it have a width */
+    content: ""; /* clears default height */
+    margin-top: 20px; /* change this to whatever height you want it */
+}
+
+
+
+.box {
+    position:relative;
+}
+
+.footer-submit {
+    position:absolute;
+    bottom:0;
+    right:70px;
+}
+
+.footer-cancel {
+    position:absolute;
+    bottom:0;
+    right:0;
+}
+
+#littleLogo {
+    float: right;
+    background-color: red;
+}
+
+#footer {
+    display : table-row;
+    vertical-align : bottom;
+    height : 20px;
+
+}
+
+
+.button-submit {background-color: green;}
+.button-cancel {background-color: red;}

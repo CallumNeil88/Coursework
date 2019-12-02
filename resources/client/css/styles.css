@@ -17,31 +17,57 @@ h1 {
 }
 
 br1 {
-    display: block;
-    margin-bottom: 2px;
-    line-height: 100px;
+    display: block; /* makes it have a width */
+    content: ""; /* clears default height */
+    margin-top: 100px; /* change this to whatever height you want it */
 }
 
+
 br2 {
-    display: block;
-    margin-bottom: 2px;
-    line-height: 2px;
+    display: block; /* makes it have a width */
+    content: ""; /* clears default height */
+    margin-top: 20px; /* change this to whatever height you want it */
 }
+
+
 
 .box {
     position:relative;
 }
 
-.footer-submit {
-    position:absolute;
-    bottom:0;
-    right:70px;
+
+#littleLogo {
+    float: right;
 }
 
-.footer-cancel {
-    position:absolute;
-    bottom:0;
-    right:0;
+#footer {
+    display : table-row;
+    vertical-align : bottom;
+    height : 20px;
+
+}
+
+.button {
+    display: inline-block;
+    padding: 5px 5px;
+    font-size: 20px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px #999;
+}
+
+.button:hover {background-color: #3e8e41}
+
+.button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 2px #666;
+    transform: translateY(2px);
 }
 
 
