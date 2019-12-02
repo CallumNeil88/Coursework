@@ -1,8 +1,7 @@
 body {
     background-color: navy;
-    margin: 0px;
+    margin: 0;
     font-family: 'Arial', serif;
-
 }
 
 h1 {
@@ -15,31 +14,36 @@ h1 {
     margin: 0 auto;
     min-height: 600px;
     padding: 32px;
-    height:100%;
-    border-collapse:collapse;
-    display : table;
 }
 
 br1 {
-    display: block; /* makes it have a width */
-    content: ""; /* clears default height */
-    margin-top: 100px; /* change this to whatever height you want it */
+    display: block;
+    margin-bottom: 2px;
+    line-height: 100px;
 }
 
 br2 {
-    display: block; /* makes it have a width */
-    content: ""; /* clears default height */
-    margin-top: 20px; /* change this to whatever height you want it */
+    display: block;
+    margin-bottom: 2px;
+    line-height: 2px;
 }
 
-#littleLogo {
-    float: right;
-    background-color: red;
+.box {
+    position:relative;
 }
 
-#footer {
-    display : table-row;
-    vertical-align : bottom;
-    height : 20px;
-
+.footer-submit {
+    position:absolute;
+    bottom:0;
+    right:70px;
 }
+
+.footer-cancel {
+    position:absolute;
+    bottom:0;
+    right:0;
+}
+
+
+.button-submit {background-color: green;}
+.button-cancel {background-color: red;}
