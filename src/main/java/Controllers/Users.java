@@ -3,11 +3,10 @@ package Controllers;
 import Server.Main;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.UUID;
@@ -20,6 +19,8 @@ public class Users {
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     @Produces(MediaType.APPLICATION_JSON)
     public String newUser(@FormDataParam("Username") String Username, @FormDataParam("Password") String Password, @FormDataParam("Firstname") String Firstname, @FormDataParam("Lastname") String Lastname) {
+
+
 
         try {
             if(Username == null || Password == null || Firstname == null || Lastname == null){
@@ -85,6 +86,55 @@ public class Users {
 
 
     }
+
+    @POST
+    @Path("logout")
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
+    @Produces(MediaType.APPLICATION_JSON)
+    public String logoutUser(@CookieParam("token") String token) {
+
+        try {
+
+            System.out.println("user/logout");
+
+            PreparedStatement ps1 = Main.db.prepareStatement("SELECT UserID FROM Users WHERE Token = ?");
+            ps1.setString(1, token);
+            ResultSet logoutResults = ps1.executeQuery();
+            if (logoutResults.next()) {
+
+                int id = logoutResults.getInt(1);
+
+                PreparedStatement ps2 = Main.db.prepareStatement("UPDATE Users SET Token = NULL WHERE UserID = ?");
+                ps2.setInt(1, id);
+                ps2.executeUpdate();
+
+                return "{\"status\": \"OK\"}";
+            } else {
+
+                return "{\"error\": \"Invalid token!\"}";
+
+            }
+
+        } catch (Exception exception){
+            System.out.println("Database error during /user/logout: " + exception.getMessage());
+            return "{\"error\": \"Server side error!\"}";
+        }
+
+    }
+
+    public static boolean validToken(String token) {
+        try {
+            PreparedStatement ps = Main.db.prepareStatement("SELECT UserID FROM Users WHERE Token = ?");
+            ps.setString(1, token);
+            ResultSet logoutResults = ps.executeQuery();
+            return logoutResults.next();
+        } catch (Exception exception) {
+            System.out.println("Database error during /user/logout: " + exception.getMessage());
+            return false;
+        }
+    }
+
+
 
    /* @POST
     @Path("login")
@@ -158,7 +208,11 @@ public class Users {
     @Path("studyTime")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     @Produces(MediaType.APPLICATION_JSON)
-    public String studyTime(@FormDataParam("StudyStartTime") String StudyStartTime, @FormDataParam("StudyEndTime") String StudyEndTime, @FormDataParam("Token") String Token){
+    public String studyTime(@FormDataParam("StudyStartTime") String StudyStartTime, @FormDataParam("StudyEndTime") String StudyEndTime, @FormDataParam("Token") String Token, @CookieParam("token") String token){
+
+        if (!Users.validToken(token)) {
+            return "{\"error\": \"You don't appear to be logged in.\"}";
+        }
         try {
             if(StudyStartTime == null || StudyEndTime == null || Token == null){
                 throw new Exception("One or more form data parameters are missing in the HTTP request");
