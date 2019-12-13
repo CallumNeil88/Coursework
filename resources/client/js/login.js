@@ -12,7 +12,7 @@ function pageLoad() {
 
     document.getElementById("field").innerHTML = '<div style="text-align: center;">'
 
-
+    document.getElementById('loginForm').addEventListener('submit', login);
 
 
     //+ '<div>'
@@ -27,6 +27,7 @@ function pageLoad() {
     //    document.getElementById("loginButton").addEventListener("click", login);
     //}
 }
+
 
 function login(event) {
 

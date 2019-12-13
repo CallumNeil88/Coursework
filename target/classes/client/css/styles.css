@@ -35,6 +35,9 @@ br2 {
     position:relative;
 }
 
+#loginForm{
+    align: centre;
+}
 
 #littleLogo {
     float: right;

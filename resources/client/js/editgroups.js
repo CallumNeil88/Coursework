@@ -3,7 +3,7 @@ function pageLoad() {
     let now = new Date();
 
     let myHTML = '<div style="text-align:center;">'
-        + '<h1>Index</h1>'
+        + '<h1>Edit Groups</h1>'
         + '<img src="/client/img/logo.png"  alt="Logo"/>'
         + '<div style="font-style: italic;">'
         + 'Generated at ' + now.toLocaleTimeString()

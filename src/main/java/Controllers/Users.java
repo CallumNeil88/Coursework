@@ -2,6 +2,7 @@ package Controllers;
 
 import Server.Main;
 import org.glassfish.jersey.media.multipart.FormDataParam;
+import org.json.simple.JSONObject;
 
 
 import javax.ws.rs.*;
@@ -48,16 +49,16 @@ public class Users {
     public String loginUser(@FormDataParam("username") String username, @FormDataParam("password") String password) {
 
         try {
-
+            System.out.println("Test1");
             PreparedStatement ps1 = Main.db.prepareStatement("SELECT Password FROM Users WHERE Username = ?");
             ps1.setString(1, username);
             ResultSet loginResults = ps1.executeQuery();
             if (loginResults.next()) {
-
+                System.out.println("Test2");
                 String correctPassword = loginResults.getString(1);
 
                 if (password.equals(correctPassword)) {
-
+                    System.out.println("Test1");
                     String token = UUID.randomUUID().toString();
 
                     PreparedStatement ps2 = Main.db.prepareStatement("UPDATE Users SET Token = ? WHERE Username = ?");
@@ -65,7 +66,11 @@ public class Users {
                     ps2.setString(2, username);
                     ps2.executeUpdate();
 
-                    return "{\"token\": \""+ token + "\"}";
+                    JSONObject response = new JSONObject();
+                    response.put("username", username);
+                    response.put("token", token);
+                    return response.toString();
+
 
                 } else {
 
