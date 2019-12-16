@@ -29,7 +29,9 @@ br2 {
     margin-top: 20px; /* change this to whatever height you want it */
 }
 
-
+.loginDiv{
+    padding: 5px;
+}
 
 .box {
     position:relative;
