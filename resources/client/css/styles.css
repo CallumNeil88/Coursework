@@ -45,11 +45,21 @@ br2 {
     float: right;
 }
 
+#littleLogo2 {
+    float: right;
+}
+
 #footer {
     display : table-row;
     vertical-align : bottom;
     height : 20px;
 
+}
+
+#footer2 {
+    display: table-row;
+    vertical-align: bottom;
+    height: 20px;
 }
 
 .button {
@@ -77,4 +87,8 @@ br2 {
 
 
 .button-submit {background-color: green;}
+.button-signup {
+    background-color: green;
+    transform: translateY(-5px);
+}
 .button-cancel {background-color: red;}

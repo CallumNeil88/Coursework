@@ -19,7 +19,7 @@ public class Users {
     @Path("new")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     @Produces(MediaType.APPLICATION_JSON)
-    public String newUser(@FormDataParam("Username") String Username, @FormDataParam("Password") String Password, @FormDataParam("Firstname") String Firstname, @FormDataParam("Lastname") String Lastname) {
+    public String newUser(@FormDataParam("username") String Username, @FormDataParam("password") String Password, @FormDataParam("firstname") String Firstname, @FormDataParam("lastname") String Lastname) {
 
 
 
@@ -33,9 +33,14 @@ public class Users {
             ps.setString(2, Password);
             ps.setString(3, Firstname);
             ps.setString(4, Lastname);
-
             ps.executeUpdate();
-            return("{\"Status\": \"OK\"}");
+
+            JSONObject response = new JSONObject();
+            response.put("username", Username);
+            response.put("password", Password);
+            response.put("firstname", Firstname);
+            response.put("lastname", Lastname);
+            return response.toString();
 
         } catch (Exception exception) {
             return ("Database error: " + exception.getMessage());
@@ -49,16 +54,16 @@ public class Users {
     public String loginUser(@FormDataParam("username") String username, @FormDataParam("password") String password) {
 
         try {
-            System.out.println("Test1");
+
             PreparedStatement ps1 = Main.db.prepareStatement("SELECT Password FROM Users WHERE Username = ?");
             ps1.setString(1, username);
             ResultSet loginResults = ps1.executeQuery();
             if (loginResults.next()) {
-                System.out.println("Test2");
+
                 String correctPassword = loginResults.getString(1);
 
                 if (password.equals(correctPassword)) {
-                    System.out.println("Test1");
+
                     String token = UUID.randomUUID().toString();
 
                     PreparedStatement ps2 = Main.db.prepareStatement("UPDATE Users SET Token = ? WHERE Username = ?");

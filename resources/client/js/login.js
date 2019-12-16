@@ -51,6 +51,10 @@ function login(event) {
     });
 }
 
+function gotoSignup() {
+    window.location.href = '/client/signup.html';
+}
+
 /*function logout() {
 
     fetch("/user/logout", {method: 'post'}

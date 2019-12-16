@@ -1,5 +1,5 @@
 function pageLoad() {
-
+    /*-------------------------- v Test Data v -----------------------------------------------------------------------*/
     let now = new Date();
 
     let myHTML = '<div style="text-align:center;">'
@@ -11,30 +11,30 @@ function pageLoad() {
         + '</div>';
 
     document.getElementById("testDiv").innerHTML = myHTML;
+    /*----------------------------------------------------------------------------------------------------------------*/
+    document.getElementById('signupForm').addEventListener('submit', signup);
 
-    document.getElementById('loginForm').addEventListener('submit', login);
 }
 
 function signup(event) {
 
     event.preventDefault();
 
-    const form = document.getElementById("loginForm");
+    const form = document.getElementById("signupForm");
     const formData = new FormData(form);
-
+    alert("testing 1");
     fetch("/users/new", {method: 'post', body: formData}
     ).then(response => response.json()
     ).then(responseData => {
-
+        alert("testing 2");
         if (responseData.hasOwnProperty('error')) {
+            alert("testing 3");
             alert(responseData.error);
-        } /*else {
-            Cookies.set("username", responseData.username);
-            Cookies.set("token", responseData.token);
+        } else {
+            alert("You have Signed Up");
 
-            window.location.href = '/client/index.html';
-        }*/
+            window.location.href = '/client/login.html';
+        }
 
     });
-    window.location.href = '/client/login.html';
 }
